@@ -1,4 +1,4 @@
-# GlobalTab
+# TempServ
 A velocity plugin to add temporary servers
 
 # Building

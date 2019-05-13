@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id 'eclipse'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
 }
 
 group 'com.aang23'

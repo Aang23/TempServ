@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+group 'com.aang23'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'velocity'
+        url = 'https://repo.velocitypowered.com/snapshots/'
+    }
+}
+
+dependencies {
+    compileOnly 'com.velocitypowered:velocity-api:1.0.0-SNAPSHOT'
+}

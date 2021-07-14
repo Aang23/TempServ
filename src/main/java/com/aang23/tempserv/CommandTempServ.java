@@ -1,17 +1,18 @@
 package com.aang23.tempserv;
 
-import java.net.InetSocketAddress;
-import com.velocitypowered.api.command.Command;
 import com.velocitypowered.api.command.CommandSource;
+import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.server.ServerInfo;
-import net.kyori.text.TextComponent;
-import net.kyori.text.format.TextColor;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 
-public class CommandTempServ implements Command {
+import java.net.InetSocketAddress;
 
-    @Override
-    public void execute(@NonNull CommandSource source, String[] args) {
+public class CommandTempServ implements SimpleCommand {
+
+    public void execute(Invocation invocation) {
+        CommandSource source = invocation.source();
+        String[] args = invocation.arguments();
         if (args.length > 0) {
             if (args[0].equals("add") && args.length == 4) {
                 ServerInfo toRegister = new ServerInfo(args[1],
@@ -20,24 +21,22 @@ public class CommandTempServ implements Command {
                 TempServ.server.registerServer(toRegister);
 
                 source.sendMessage(
-                        TextComponent.of("Registered server " + args[1] + " with adress " + args[2] + ":" + args[3])
-                                .color(TextColor.GREEN));
+                        Component.text("Registered server " + args[1] + " with address " + args[2] + ":" + args[3])
+                                .color(NamedTextColor.GREEN));
             } else if (args[0].equals("del") && args.length == 2) {
                 TempServ.server.unregisterServer(TempServ.registeredServers.get(args[1]));
-                source.sendMessage(TextComponent.of("Deleted server " + args[1]).color(TextColor.GREEN));
+                source.sendMessage(Component.text("Deleted server " + args[1]).color(NamedTextColor.GREEN));
             } else if (args[0].equals("list")) {
                 for (ServerInfo current : TempServ.registeredServers.values()) {
                     source.sendMessage(
-                            TextComponent.of("Server " + current.getName() + " : " + current.getAddress().toString())
-                                    .color(TextColor.YELLOW));
+                            Component.text("Server " + current.getName() + " : " + current.getAddress().toString())
+                                    .color(NamedTextColor.YELLOW));
                 }
             } else
-                source.sendMessage(TextComponent
-                        .of("Usage : /tempserv add [name] [adress] [port] or /tempserv del [name] or /tempserv list")
-                        .color(TextColor.RED));
+                source.sendMessage(Component.text("Usage : /tempserv add [name] [address] [port] or /tempserv del [name] or /tempserv list")
+                        .color(NamedTextColor.RED));
         } else
-            source.sendMessage(TextComponent
-                    .of("Usage : /tempserv add [name] [adress] [port] or /tempserv del [name] or /tempserv list")
-                    .color(TextColor.RED));
+            source.sendMessage(Component.text("Usage : /tempserv add [name] [address] [port] or /tempserv del [name] or /tempserv list")
+                    .color(NamedTextColor.RED));
     }
 }

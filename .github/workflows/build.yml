@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Java 16
+        uses: actions/setup-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+      - name: exec for gradle
+        run: chmod +x gradlew
+      - name: gradle build
+        run: ./gradlew build jar
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: TempServ-2.0
+          path: build/libs/

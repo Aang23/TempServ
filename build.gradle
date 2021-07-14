@@ -1,11 +1,10 @@
 plugins {
     id 'java'
     id 'eclipse'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
 }
 
 group 'com.aang23'
-version '1.0'
+version '2.0'
 
 sourceCompatibility = 1.8
 
@@ -13,10 +12,11 @@ repositories {
     mavenCentral()
     maven {
         name = 'velocity'
-        url = 'https://repo.velocitypowered.com/snapshots/'
+        url = 'https://nexus.velocitypowered.com/repository/maven-public/'
     }
 }
 
 dependencies {
-    compileOnly 'com.velocitypowered:velocity-api:1.0.0-SNAPSHOT'
+    compileOnly 'com.velocitypowered:velocity-api:3.0.0'
+    annotationProcessor 'com.velocitypowered:velocity-api:3.0.0'
 }

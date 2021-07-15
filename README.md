@@ -6,4 +6,20 @@ A velocity plugin to add temporary servers
 Run ./gradlew build 
 Your jar will be in build/libs
 
-Or download the artifact from actions, or from maven @ https://packages.hexus.eu
+You can download the CI Build from GitHub Actions in Artifacts.
+
+For Devs:
+
+```
+Maven repository
+	
+Name  tempserv
+URL   https://packages.hexus.eu/repository/HXMC-SNAPSHOT/
+```
+```
+Dependencies
+
+Group ID      com.aang23
+Artifact ID   TempServ
+Version       2.0-SNAPSHOT
+```
